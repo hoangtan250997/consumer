@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class Consumer {
-    private static final String orderTopic = "${topic.name}";
+    private static final String orderTopic = "${topic.name.food}";
 
     private final ObjectMapper objectMapper;
     private final FoodOrderService foodOrderService;
@@ -23,8 +23,7 @@ public class Consumer {
 
     @KafkaListener(topics = orderTopic)
     public void consumeMessage(String message) throws JsonProcessingException {
-        log.info("message consumed {}", message);
-
+        System.out.println(message);
         FoodOrderDto foodOrderDto = objectMapper.readValue(message, FoodOrderDto.class);
         foodOrderService.persistFoodOrder(foodOrderDto);
     }
