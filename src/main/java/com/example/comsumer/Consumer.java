@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class Consumer {
-    private static final String orderTopic = "${topic.name.food}";
+    private static final String orderTopic = "${topic.name.drink}";
 
     private final ObjectMapper objectMapper;
     private final FoodOrderService foodOrderService;
