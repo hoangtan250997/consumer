@@ -18,10 +18,7 @@ public class FoodOrderService {
     }
 
     public void persistFoodOrder(FoodOrderDto foodOrderDto) {
-        System.out.println("here");
         FoodOrder foodOrder = modelMapper.map(foodOrderDto, FoodOrder.class);
-//        FoodOrder persistedFoodOrder = foodOrderRepository.save(foodOrder);
-        System.out.println(foodOrderRepository.save(foodOrder));
-//        log.info("food order persisted {}", persistedFoodOrder);
+        FoodOrder persistedFoodOrder = foodOrderRepository.save(foodOrder);
     }
 }
