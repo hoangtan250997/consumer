@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "drink_order")
-public class FoodOrder {
+public class ItemOrder {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

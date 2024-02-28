@@ -13,18 +13,18 @@ public class Consumer {
     private static final String orderTopic = "${topic.name.drink}";
 
     private final ObjectMapper objectMapper;
-    private final FoodOrderService foodOrderService;
+    private final OrderService foodOrderService;
 
     @Autowired
-    public Consumer(ObjectMapper objectMapper, FoodOrderService foodOrderService) {
+    public Consumer(ObjectMapper objectMapper, OrderService foodOrderService) {
         this.objectMapper = objectMapper;
         this.foodOrderService = foodOrderService;
     }
 
-    @KafkaListener(topics = orderTopic)
+    @KafkaListener(topics = orderTopic,groupId = "default")
     public void consumeMessage(String message) throws JsonProcessingException {
         System.out.println(message);
-        FoodOrderDto foodOrderDto = objectMapper.readValue(message, FoodOrderDto.class);
+        OrderDto foodOrderDto = objectMapper.readValue(message, OrderDto.class);
         foodOrderService.persistFoodOrder(foodOrderDto);
     }
 
